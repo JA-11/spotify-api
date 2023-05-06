@@ -54,8 +54,19 @@ function App() {
     let returnedAlbums = await fetch(`https://api.spotify.com/v1/artists/${artistID}/albums?include_groups=album&market=US&limit=50`, searchParameters)
       .then(response => response.json())
       .then(data => {
+
+        //Filtering for duplicate albums (two copies were showing up for explict and clean versions)
+        let filteredAlbums = data.items
+          // store the comparison values in array
+          .map(e => e['name'])
+          // store the indexes of the unique objects
+          .map((e, i, final) => final.indexOf(e) === i && i)
+          // eliminate the false indexes & get unique objects
+          .filter(obj => data.items[obj]).map(e => data.items[e]);
+
         //console.log(data.items);
-        setAlbums(data.items);
+        //console.log(filteredAlbums);
+        setAlbums(filteredAlbums);
       });
 
     // Display those albums (returned below)
