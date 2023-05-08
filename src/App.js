@@ -1,6 +1,6 @@
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, InputGroup, FormControl, Button, Row, Card } from 'react-bootstrap';
+import { Container, InputGroup, FormControl, Button, Row, Col, Card } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 
 const clientId = `${process.env.REACT_APP_CLIENT_ID}`; // Your client id
@@ -11,6 +11,7 @@ function App() {
   const [searchInput, setSearchInput] = useState("");
   const [accessToken, setAccessToken] = useState("");
   const [albums, setAlbums] = useState([]);
+  const [popularSongs, setPopularSongs] = useState([]);
   const [artist_ID, setArtist_ID] = useState("");
 
   useEffect(() => {
@@ -78,6 +79,7 @@ function App() {
       .then(response => response.json())
       .then(data => {
         //console.log(data.tracks);
+        setPopularSongs(data.tracks);
       });
   }
 
@@ -110,6 +112,22 @@ function App() {
             Search
           </Button>
         </InputGroup>
+      </Container>
+
+      <Container className="white">
+        <div className="songs">
+          <Row className="space">
+            <Col>
+              {popularSongs.slice(0, 5).map(song => (
+                <div key={song.id}>
+                  <ul>
+                    <li>{song.name}</li>
+                  </ul>
+                </div>
+              ))}
+            </Col>
+          </Row>
+        </div>
       </Container>
 
       <Container>
