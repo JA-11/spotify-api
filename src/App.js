@@ -11,6 +11,7 @@ function App() {
   const [searchInput, setSearchInput] = useState("");
   const [accessToken, setAccessToken] = useState("");
   const [albums, setAlbums] = useState([]);
+  const [artist_ID, setArtist_ID] = useState("");
 
   useEffect(() => {
 
@@ -45,6 +46,7 @@ function App() {
     let artistID = await fetch(`https://api.spotify.com/v1/search?q=${searchInput}&type=artist`, searchParameters)
       .then(response => response.json())
       .then(data => {
+        setArtist_ID(data.artists.items[0].id);
         return data.artists.items[0].id;  //return a string because artistID variable will be updated with that value
       });
 
@@ -77,6 +79,15 @@ function App() {
       .then(data => {
         //console.log(data.tracks);
       });
+  }
+
+  function formatSearchInput(string) {
+    if (string === "") {
+      return "your favorite artist";
+    } else {
+      const formattedString = string.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+      return formattedString;
+    }
   }
 
   //console.log(albums);
@@ -121,6 +132,11 @@ function App() {
             )
           })}
         </Row>
+
+        <div className="center">
+          <br />
+          <h2 className="white">Listen to {formatSearchInput(searchInput)} right now on <a className="green" href={`https://open.spotify.com/artist/${artist_ID}`}>Spotify</a>!</h2>
+        </div>
       </Container>
     </div>
   );
