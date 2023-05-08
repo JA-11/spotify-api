@@ -7,6 +7,14 @@
   margin-bottom: 20px;
 }
 
+.songs {
+  font-size: large;
+}
+
+.white {
+  color: white
+}
+
 .center {
   text-align: center;
 }

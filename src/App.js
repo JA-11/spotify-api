@@ -15,6 +15,7 @@ function App() {
   const [artist_ID, setArtist_ID] = useState("");
 
   useEffect(() => {
+    document.body.style.backgroundColor = "#121212";
 
     // API Access Token
     let authParameters = {  //Spotify makes you request access token in a specific way, kind of complicated
@@ -108,7 +109,7 @@ function App() {
             }}
             onChange={e => setSearchInput(e.target.value)}
           />
-          <Button onClick={search}>
+          <Button onClick={search} variant="success">
             Search
           </Button>
         </InputGroup>
