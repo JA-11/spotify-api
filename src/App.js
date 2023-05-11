@@ -95,6 +95,11 @@ function App() {
 
   //console.log(albums);
 
+  let displayPopularSongsTitle;
+  if (popularSongs.length > 0) {
+    displayPopularSongsTitle = <p className="center">Popular Songs:</p>;
+  }
+
   return (
     <div>
       <Container>
@@ -117,9 +122,19 @@ function App() {
 
       <Container className="white">
         <div className="songs">
+          {displayPopularSongsTitle}
           <Row className="space">
-            <Col>
+            <Col md={{ span: 3, offset: 3 }}>
               {popularSongs.slice(0, 5).map(song => (
+                <div key={song.id}>
+                  <ul>
+                    <li>{song.name}</li>
+                  </ul>
+                </div>
+              ))}
+            </Col>
+            <Col md={{ span: 3 }}>
+              {popularSongs.slice(5).map(song => (
                 <div key={song.id}>
                   <ul>
                     <li>{song.name}</li>
