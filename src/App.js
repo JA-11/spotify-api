@@ -13,6 +13,7 @@ function App() {
   const [albums, setAlbums] = useState([]);
   const [popularSongs, setPopularSongs] = useState([]);
   const [artist_ID, setArtist_ID] = useState("");
+  const [artistPicture, setArtistPicture] = useState("");
 
   useEffect(() => {
     document.body.style.backgroundColor = "#121212";
@@ -49,6 +50,8 @@ function App() {
       .then(response => response.json())
       .then(data => {
         setArtist_ID(data.artists.items[0].id);
+        //console.log(data.artists.items[0].images[0].url);
+        setArtistPicture(data.artists.items[0].images[0].url);
         return data.artists.items[0].id;  //return a string because artistID variable will be updated with that value
       });
 
@@ -94,6 +97,7 @@ function App() {
   }
 
   //console.log(albums);
+  //console.log(artistPicture);
 
   let displayPopularSongsTitle;
   if (popularSongs.length > 0) {
@@ -171,6 +175,8 @@ function App() {
           <br />
           <h2 className="white">Listen to {formatSearchInput(searchInput)} right now on <a className="green" href={`https://open.spotify.com/artist/${artist_ID}`}>Spotify</a>!</h2>
         </div>
+
+        <img className="artistImage" src={artistPicture} alt="" />
       </Container>
     </div>
   );
