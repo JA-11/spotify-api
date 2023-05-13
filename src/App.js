@@ -14,6 +14,7 @@ function App() {
   const [popularSongs, setPopularSongs] = useState([]);
   const [artist_ID, setArtist_ID] = useState("");
   const [artistPicture, setArtistPicture] = useState("");
+  const [artistName, setartistName] = useState("");
 
   useEffect(() => {
     document.body.style.backgroundColor = "#121212";
@@ -50,6 +51,7 @@ function App() {
       .then(response => response.json())
       .then(data => {
         setArtist_ID(data.artists.items[0].id);
+        setartistName(data.artists.items[0].name);
         //console.log(data.artists.items[0].images[0].url);
         setArtistPicture(data.artists.items[0].images[0].url);
         return data.artists.items[0].id;  //return a string because artistID variable will be updated with that value
@@ -87,21 +89,23 @@ function App() {
       });
   }
 
-  function formatSearchInput(string) {
-    if (string === "") {
-      return "your favorite artist";
-    } else {
-      const formattedString = string.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
-      return formattedString;
-    }
-  }
-
   //console.log(albums);
   //console.log(artistPicture);
 
   let displayPopularSongsTitle;
   if (popularSongs.length > 0) {
     displayPopularSongsTitle = <p className="center">Popular Songs:</p>;
+  }
+
+  //Added function with conditional for updating the header
+  function updateHeader() {
+    let header;
+    if (artist_ID.length === 0) {
+      header = "your favorite artist";
+    } else {
+      header = artistName;
+    }
+    return header;
   }
 
   return (
@@ -173,7 +177,7 @@ function App() {
 
         <div className="center">
           <br />
-          <h2 className="white">Listen to {formatSearchInput(searchInput)} right now on <a className="green" href={`https://open.spotify.com/artist/${artist_ID}`}>Spotify</a>!</h2>
+          <h2 className="white">Listen to {updateHeader()} right now!</h2>;
         </div>
 
         <img className="artistImage" src={artistPicture} alt="" />
