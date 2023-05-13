@@ -97,7 +97,16 @@ function App() {
     displayPopularSongsTitle = <p className="center">Popular Songs:</p>;
   }
 
-  //Added function with conditional for updating the header
+  function updateSpotifyURL() {
+    let spotifyURL;
+    if (artist_ID.length > 0) {
+      spotifyURL = `https://open.spotify.com/artist/${artist_ID}`;
+    } else {
+      spotifyURL = "https://open.spotify.com/";
+    }
+    return spotifyURL;
+  }
+
   function updateHeader() {
     let header;
     if (artist_ID.length === 0) {
@@ -177,7 +186,7 @@ function App() {
 
         <div className="center">
           <br />
-          <h2 className="white">Listen to {updateHeader()} right now!</h2>;
+          <h2 className="white">Listen to {updateHeader()} right now on <a className="green" href={updateSpotifyURL()}>Spotify</a>!</h2>;
         </div>
 
         <img className="artistImage" src={artistPicture} alt="" />
