@@ -16,6 +16,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 <ul>
 <li>Bootstrap 5.2.3</li>
 <li>React-Bootstrap 2.7.4</li>
+<li>Will also need to obtain a Client ID and Client Secret from Spotify in order to utilize their API. Click [here](https://developer.spotify.com/) to sign up and read the documentation.</li>
 </ul>
 
 ## Available Scripts: 
