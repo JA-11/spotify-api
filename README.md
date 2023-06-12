@@ -1,8 +1,24 @@
-# Getting Started with Create React App
+# React App - Spotify API Artist Search
+
+This application allows users to type any artist's name into the search bar. Using data from Spotify's API, a list of popular songs will display at the top of the screen. After that, any albums the artist has released will display in rows of cards. Each card includes the album's image, title, year released, number of songs, and a link to listen on Spotify.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Tech Stack:
+<ul>
+<li>JavaScript</li>
+<li>CSS</li>
+<li>HTML</li>
+<li>React 18.2.0</li>
+</ul>
+
+## Required Dependencies:
+<ul>
+<li>Bootstrap 5.2.3</li>
+<li>React-Bootstrap 2.7.4</li>
+</ul>
+
+## Available Scripts: 
 
 In the project directory, you can run:
 
